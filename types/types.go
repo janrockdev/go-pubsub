@@ -7,7 +7,6 @@ import (
 	"github.com/janrockdev/go-pubsub/utils"
 	"io/ioutil"
 	"math/big"
-	"os"
 	"path/filepath"
 	"strconv"
 	"time"
@@ -101,28 +100,9 @@ func (d *Data) UnmarshalText(text []byte) (err error) {
 	return nil
 }
 
+// Config File struct
 type Config struct {
-	ServerUrl  string `json:"server_url"`
-	Keyfile    string `json:"keyfile"`
-	Passphrase string `json:"passphrase"`
-	Address    string `json:"address"`
-}
-
-func LoadConfigPath() string {
-	path := os.Getenv("ETHEREUM_WALLET_CONFIG_PATH")
-	if path == "" {
-		currentPath, err := os.Getwd()
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		path = currentPath + "/config.json"
-		if utils.FileExists(path) == false {
-			fmt.Printf("doesn't set config\n")
-			os.Exit(1)
-		}
-	}
-	return path
+	ServerUrl string `json:"server_url"`
 }
 
 func ImportConfig(path string) (Config, error) {

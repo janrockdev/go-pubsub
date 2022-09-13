@@ -7,14 +7,14 @@ import (
 
 var (
 	RedisCmd = &cli.Command{
-		Name:        "sendrawtx",
-		Usage:       "send raw tranasaction from node",
-		Description: "send raw tranasaction from node",
-		ArgsUsage:   "<raw> <rawfile>",
-		Flags: []cli.Flag{
-			rawFlag,
-			rawFileFlag,
-		},
+		Name:        "ping",
+		Usage:       "",
+		Description: "",
+		//ArgsUsage:   "<raw> <rawfile>", //flags
+		//Flags: []cli.Flag{
+		//	rawFlag,
+		//	rawFileFlag,
+		//},
 		Action: func(c *cli.Context) error {
 			config := loadConfig()
 			fmt.Println(config)
@@ -26,7 +26,7 @@ var (
 		Name:        "redis",
 		Usage:       "RedisDB commands",
 		ArgsUsage:   "",
-		Category:    "Utility Commands",
+		Category:    "Commands",
 		Description: "",
 		Subcommands: []*cli.Command{
 			RedisCmd,

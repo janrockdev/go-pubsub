@@ -9,6 +9,8 @@ import (
 
 func main() {
 	app := &cli.App{
+		Name:  "Go-PubSub Application",
+		Usage: "(app description)",
 		Commands: []*cli.Command{
 			cmd.RedisCommand,
 		},
