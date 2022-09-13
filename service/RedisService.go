@@ -1,4 +1,4 @@
-package main
+package service
 
 import (
 	"context"
@@ -8,9 +8,9 @@ import (
 
 var ctx = context.Background()
 
-func main() {
+func RedisService(redisUrl string) {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     redisUrl,
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
