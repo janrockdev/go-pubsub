@@ -1,4 +1,6 @@
-# GO-PubSub (NATS)
+# Go-PubSub (NATS)
+
+IN-PROGRESS
 
 ### Dependencies:
 ```shell
