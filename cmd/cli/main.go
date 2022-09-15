@@ -13,11 +13,12 @@ func main() {
 		Usage: "(app description)",
 		Commands: []*cli.Command{
 			cmd.RedisCommand,
+			cmd.NatsCommand,
 		},
 	}
 
 	err := app.Run(os.Args)
 	if err != nil {
-		fmt.Errorf("%s", err)
+		_ = fmt.Errorf("%s", err)
 	}
 }

@@ -6,7 +6,7 @@ import (
 )
 
 var (
-	// RedisCmd Commands
+	// RedisCmd Command
 	RedisCmd = &cli.Command{
 		Name:        "ping",
 		Usage:       "redis ping <args>",

@@ -3,14 +3,13 @@ package cmd
 import "github.com/urfave/cli/v2"
 
 var (
-	valueFlag = &cli.StringFlag{
-		Name:     "value",
-		Usage:    "send value",
+	filter = &cli.StringFlag{
+		Name:     "filter",
+		Aliases:  []string{"f"},
+		Usage:    "filter",
 		Required: true,
-	}
-	portFlag = &cli.IntFlag{
-		Name:  "port",
-		Usage: "port",
-		Value: 8080,
+		Value:    "channel_*",
+		// Destination: &f,
+		// EnvVars: []string{"APP_FILTER"},
 	}
 )
