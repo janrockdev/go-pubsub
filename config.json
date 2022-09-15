@@ -1,3 +1,4 @@
 {
-  "redis_url": "localhost:6379"
+  "redis_url": "localhost:6379",
+  "nats_url": "localhost:8222"
 }

@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/janrockdev/go-pubsub/service"
+	"github.com/janrockdev/go-pubsub/utils"
 	"github.com/urfave/cli/v2"
 )
 
@@ -11,14 +12,17 @@ var (
 		Name:        "ping",
 		Usage:       "redis ping <args>",
 		Description: "",
-		//ArgsUsage:   "<raw> <rawfile>", //flags
-		//Flags: []cli.Flag{
-		//	rawFlag,
-		//	rawFileFlag,
-		//},
+		ArgsUsage:   "<filter>",
+		Flags: []cli.Flag{
+			filter,
+		},
 		Action: func(c *cli.Context) error {
 			config := loadConfig()
-			service.RedisService(config.ServerUrl)
+			err := service.RedisService(config.ServerUrl, c.String("filter"))
+			if err != nil {
+				utils.Logr.Error(err)
+				return err
+			}
 			return nil
 		},
 	}

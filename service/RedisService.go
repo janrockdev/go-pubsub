@@ -1,39 +1,16 @@
 package service
 
 import (
-	"context"
-	"fmt"
-	"github.com/go-redis/redis/v8"
+	"github.com/janrockdev/go-pubsub/service/impl"
+	"github.com/janrockdev/go-pubsub/utils"
 )
 
-var ctx = context.Background()
-
-func RedisService(redisUrl string) {
-	rdb := redis.NewClient(&redis.Options{
-		Addr:     redisUrl,
-		Password: "", // no password set
-		DB:       0,  // use default DB
-	})
-
-	//err := rdb.Set(ctx, "key", "value", 0).Err()
-	//if err != nil {
-	//	panic(err)
-	//}
-
-	val, err := rdb.Get(ctx, "k1").Result()
+func RedisService(redisUrl string, args string) error {
+	//example
+	res, err := impl.RedisPing(redisUrl, args)
 	if err != nil {
-		panic(err)
+		return err
 	}
-	fmt.Println("k1", val)
-
-	//val2, err := rdb.Get(ctx, "key2").Result()
-	//if err == redis.Nil {
-	//	fmt.Println("key2 does not exist")
-	//} else if err != nil {
-	//	panic(err)
-	//} else {
-	//	fmt.Println("key2", val2)
-	//}
-	// Output: key value
-	// key2 does not exist
+	utils.Logr.Info(res)
+	return nil
 }

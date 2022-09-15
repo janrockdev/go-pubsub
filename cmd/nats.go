@@ -2,14 +2,15 @@ package cmd
 
 import (
 	"github.com/janrockdev/go-pubsub/service"
+	"github.com/janrockdev/go-pubsub/utils"
 	"github.com/urfave/cli/v2"
 )
 
 var (
 	// NatsCmd Command
 	NatsCmd = &cli.Command{
-		Name:        "channels",
-		Usage:       "list all nats channels <args>",
+		Name:        "ping",
+		Usage:       "nats ping <args>",
 		Description: "",
 		ArgsUsage:   "<filter>",
 		Flags: []cli.Flag{
@@ -17,7 +18,11 @@ var (
 		},
 		Action: func(c *cli.Context) error {
 			config := loadConfig()
-			service.NatsService(config.ServerUrl, c.String("filter"))
+			err := service.NatsService(config.ServerUrl, c.String("filter"))
+			if err != nil {
+				utils.Logr.Error(err)
+				return err
+			}
 			return nil
 		},
 	}
